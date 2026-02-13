@@ -1140,7 +1140,7 @@ function playExtraVideos(onComplete) {
 
       video4.onended = () => {
         video4.style.display = "none";
-
+         resumeMusic();
         // --- VIDÉO 5---
         video5.style.display = "block";
         video5.currentTime = 0;
@@ -1319,6 +1319,16 @@ function yes() {
   
   setTimeout(typeLine, 1000);
 }
+
+  function resumeMusic() {
+  const audio = document.getElementById("music");
+  if (audio.paused) {
+    audio.play().catch(() => {
+      console.log("Musique nécessitait interaction utilisateur");
+    });
+  }
+}
+
 </script>
 
 </body>
