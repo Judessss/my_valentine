@@ -706,16 +706,16 @@ html, body {
     <source src="defilement1/moka_1.mp4" type="video/mp4">
   </video>
 
-  <video id="video4" playsinline preload="auto" style="display:none">
-    <source src="myname.mp4" type="video/mp4">
+  <video id="video4" playsinline preload="auto" style="display:none" muted>
+    <source src="videmake.mp4" type="video/mp4">
   </video>
 
   <video id="video5" playsinline preload="auto" style="display:none" muted>
     <source src="defilement1/centresmile.mp4" type="video/mp4">
   </video>
 
-  <video id="video6" playsinline preload="auto" style="display:none" muted>
-    <source src="videmake.mp4" type="video/mp4">
+  <video id="video6" playsinline preload="auto" style="display:none" >
+    <source src="myname.mp4" type="video/mp4">
   </video>
 
   <video id="video7" playsinline preload="auto" style="display:none" muted>
@@ -1117,6 +1117,7 @@ function playExtraVideos(onComplete) {
   video2.onended = () => {
     video2.style.display = "none";
 
+    resumeMusic();
     // --- VIDÉO 3 ---
     video3.style.display = "block";
     video3.currentTime = 0;
@@ -1140,7 +1141,7 @@ function playExtraVideos(onComplete) {
 
       video4.onended = () => {
         video4.style.display = "none";
-         resumeMusic();
+         
         // --- VIDÉO 5---
         video5.style.display = "block";
         video5.currentTime = 0;
@@ -1165,6 +1166,7 @@ function playExtraVideos(onComplete) {
         video6.onended = () => {
           video6.style.display = "none";
 
+            resumeMusic();
             // --- VIDÉO 7---
             video7.style.display = "block";
             video7.currentTime = 0;
@@ -1328,6 +1330,15 @@ function yes() {
     });
   }
 }
+
+  function pauseMusic() {
+  const audio = document.getElementById("music");
+  
+  if (!audio) return; // sécurité si l'élément n'existe pas
+  
+  audio.pause();
+}
+
 
 </script>
 
