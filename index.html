@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Océane nanga💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@400;500&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+/* Reset et base mobile-first */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  min-height: 100vh;
+  font-family: 'Cormorant Garamond', serif;
+  background: linear-gradient(135deg, #0b0004, #7a001e, #0b0004);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Emojis flottants */
+.emoji-float {
+  position: fixed;
+  font-size: 28px;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+/* Typographie responsive */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 6vw, 32px);
+  margin: 0 0 24px 0;
+  padding: 0 12px;
+  line-height: 1.3;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Boutons optimisés pour mobile */
+#choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 400px;
+  z-index: 10;
+}
+
+button {
+  font-size: clamp(16px, 4vw, 18px);
+  padding: 14px 28px;
+  min-height: 50px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  flex: 1;
+  min-width: 140px;
+  transition: transform 0.2s, opacity 0.2s;
+  touch-action: manipulation;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+.yes { 
+  background: white; 
+  color: #ff5f8a; 
+  font-weight: 600;
+}
+
+.no { 
+  background: #ff5f8a; 
+  color: white; 
+  font-weight: 600;
+}
+
+/* Texte de persuasion - OPTIMISÉ MOBILE */
+#persuasionText {
+  display: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 4.5vw, 22px);
+  line-height: 1.5;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 20px auto 15px auto;
+  padding: 0 15px;
+  max-width: 95%;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.8s ease forwards;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bouton Oui après persuasion - OPTIMISÉ MOBILE */
+#persuasionYes {
+  display: none;
+  margin: 10px auto 25px auto;
+  animation: fadeIn 0.8s ease 0.3s forwards;
+  opacity: 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+#persuasionYes button {
+  font-size: clamp(17px, 4.5vw, 20px);
+  padding: 15px 25px;
+  min-width: 160px;
+  width: 90%;
+  max-width: 300px;
+  background: linear-gradient(45deg, #ff5f8a, #ff8fab);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(255, 95, 138, 0.4);
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+#persuasionYes button:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 15px rgba(255, 95, 138, 0.6);
+}
+
+/* Section "Oui" */
+#yesSection { 
+  display: none;
+  width: 100%;
+  padding: 20px 0;
+  z-index: 5;
+}
+
+#heart {
+  font-size: clamp(48px, 12vw, 60px);
+  margin: 20px 0;
+  animation: beat 1.2s infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 95, 138, 0.5));
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.25); }
+}
+
+#dedication {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 6vw, 28px);
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Conteneur texte machine à écrire - SANS CADRE */
+#textBox {
+  width: 100%;
+  max-width: 95vw;
+  margin: 0 auto 40px;
+  font-size: clamp(19px, 5vw, 24px);
+  line-height: 1.5;
+  text-align: center;
+  padding: 0 15px;
+  min-height: 380px;
+  position: relative;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Style pour chaque ligne de texte */
+.text-line {
+  margin: 0 0 22px 0;
+  opacity: 0;
+  min-height: 28px;
+  position: relative;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.3px;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.text-line.typing {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Curseur machine à écrire réaliste */
+.text-line.typing::after {
+  content: '▋';
+  display: inline-block;
+  color: #ff5f8a;
+  animation: cursorBlink 1.2s infinite;
+  font-weight: bold;
+  margin-left: 2px;
+  filter: drop-shadow(0 0 5px rgba(255, 95, 138, 0.7));
+  font-size: 0.9em;
+}
+
+@keyframes cursorBlink {
+  0%, 45% { opacity: 1; }
+  46%, 100% { opacity: 0; }
+}
+
+/* "Je t'aime" final - SANS FOND TRANSPARENT */
+#finalLove {
+  display: none;
+  margin: 40px auto 5px auto;
+  text-align: center;
+  animation: finalBeat 1.5s infinite;
+  font-size: clamp(42px, 12vw, 60px);
+  font-family: 'Playfair Display', serif;
+  color: #ff5f8a;
+  text-shadow: 
+    0 0 25px rgba(255, 95, 138, 0.9),
+    0 0 50px rgba(255, 95, 138, 0.5);
+  padding: 0;
+  max-width: 95%;
+  background: none;
+  border-radius: 0;
+  backdrop-filter: none;
+  border: none;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+@keyframes finalBeat {
+  0%, 100% { 
+    transform: scale(1);
+    text-shadow: 
+      0 0 25px rgba(255, 95, 138, 0.9),
+      0 0 50px rgba(255, 95, 138, 0.5);
+  }
+  50% { 
+    transform: scale(1.15);
+    text-shadow: 
+      0 0 35px rgba(255, 95, 138, 1),
+      0 0 70px rgba(255, 95, 138, 0.7);
+  }
+}
+
+/* Signature personnalisable - PLUS BAS */
+#signature {
+  display: none;
+  margin: 25px auto 50px auto;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(20px, 5vw, 26px);
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  animation: signatureAppear 1.5s ease 0.5s forwards;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-style: italic;
+  padding: 0 20px;
+  line-height: 1.4;
+}
+
+@keyframes signatureAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Vidéo réduite avec morphose */
+#video1,
+#video2, 
+#video3,
+#video4,
+#video5,
+#video6,
+#video7, 
+#video8,
+#video9,
+#video10,
+#video11,
+#video12 {
+  width: 80%;
+  max-width: 280px;
+  height: auto;
+  aspect-ratio: 9/16;
+  margin: 30px auto;
+  border-radius: 18px;
+  display: none;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(0.9);
+  will-change: transform, opacity;
+  transform-origin: center;
+}
+
+
+
+/* Support pour les très petits écrans */
+@media (max-width: 360px) {
+  body {
+    padding: 12px;
+  }
+  
+  button {
+    min-width: 120px;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+  
+  #textBox {
+    font-size: 18px;
+    min-height: 350px;
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+  
+  .text-line {
+    margin-bottom: 18px;
+  }
+  
+  #finalLove {
+    margin: 35px auto 5px auto;
+    font-size: clamp(38px, 10vw, 50px);
+  }
+  
+  #signature {
+    margin: 20px auto 40px auto;
+    font-size: 18px;
+    padding: 0 15px;
+  }
+  
+  #persuasionText {
+    font-size: 17px;
+    margin: 15px auto 12px auto;
+    padding: 0 12px;
+    line-height: 1.4;
+  }
+  
+  #persuasionYes button {
+    font-size: 16px;
+    padding: 14px 22px;
+    min-width: 140px;
+  }
+  
+  #loveVideo {
+    width: 85%;
+    max-width: 250px;
+  }
+}
+
+/* Support pour écrans très hauts */
+@media (max-height: 700px) {
+  body {
+    padding: 12px;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+  
+  #textBox {
+    min-height: 300px;
+    margin-bottom: 30px;
+  }
+  
+  .text-line {
+    margin-bottom: 18px;
+  }
+  
+  #finalLove {
+    margin: 30px auto 5px auto;
+  }
+  
+  #signature {
+    margin: 20px auto 30px auto;
+  }
+  
+  #persuasionText {
+    margin: 15px auto 10px auto;
+  }
+}
+
+/* Support pour les grands écrans mobiles */
+@media (min-width: 768px) {
+  body {
+    padding: 30px;
+  }
+  
+  #choices {
+    max-width: 450px;
+  }
+  
+  #loveVideo {
+    max-width: 260px;
+  }
+  
+  #textBox {
+    max-width: 700px;
+    font-size: 26px;
+    line-height: 1.6;
+  }
+  
+  #finalLove {
+    margin: 50px auto 10px auto;
+  }
+  
+  #signature {
+    margin: 30px auto 60px auto;
+    font-size: 28px;
+  }
+  
+  #persuasionText {
+    font-size: 24px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  
+  #persuasionYes button {
+    font-size: 22px;
+    padding: 18px 35px;
+    min-width: 200px;
+  }
+}
+
+/* Support orientation paysage */
+@media (max-height: 500px) and (orientation: landscape) {
+  body {
+    padding: 10px;
+    justify-content: flex-start;
+  }
+  
+  h1 {
+    margin: 10px 0 15px 0;
+    font-size: clamp(20px, 5vw, 26px);
+  }
+  
+  #textBox {
+    min-height: 200px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  .text-line {
+    margin-bottom: 15px;
+  }
+  
+  #persuasionText {
+    margin: 10px auto 8px auto;
+    font-size: 16px;
+  }
+}
+
+/* Correction pour éviter le débordement horizontal */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Animations de morphose */
+.morph-fade-out {
+  animation: morphFadeOut 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes morphFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.95);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+    filter: blur(4px);
+    display: none;
+  }
+}
+
+.morph-fade-in {
+  animation: morphFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes morphFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+    filter: blur(4px);
+  }
+  70% {
+    opacity: 0.7;
+    transform: scale(1.02);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+.final-image {
+  width: 80%;
+  max-width: 350px;
+  border-radius: 20px;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeInImage 2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInImage {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.final-image {
+  transform: scale(0.9);
+}
+
+
+.morph-transform {
+  animation: morphTransform 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes morphTransform {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 0.8;
+    transform: scale(0.95);
+  }
+  60% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.85);
+    display: none;
+  }
+}
+
+/* Smooth transitions */
+.smooth-appear {
+  opacity: 0;
+  animation: smoothAppear 0.8s ease forwards;
+}
+
+
+/* Photo slider */
+#photoSlideshow {
+  display: none;
+  width: 80%;
+  max-width: 300px;
+  margin: 30px auto;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  width: 75%;
+  height: auto;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+  animation: cinematicZoom 3s ease forwards;
+  z-index: 1;
+}
+
+@keyframes cinematicZoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+#photoSlideshow .slide {
+  width: 65%;
+  border-radius: 18px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+#photoSlideshow .slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+#photoSlideshow {
+  position: relative;
+  width: 65%;
+  max-width: 500px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.slide {
+  position: absolute;
+  width: 65%;
+  height: auto;
+  opacity: 0;
+  transform: scale(1.15);
+  transition: opacity 1.5s ease, transform 6s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+
+@keyframes smoothAppear {
+  to {
+    opacity: 1;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="question">💘 Océane, veux-tu être ma Valentine ? 💘</h1>
+
+<div id="choices">
+  <button class="yes" onclick="yes()">Oui💖</button>
+  <button class="no" onclick="persuade()">Non💔</button>
+</div>
+
+<!-- Texte de persuasion -->
+<div id="persuasionText"></div>
+
+<!-- Bouton Oui après persuasion -->
+<div id="persuasionYes">
+  <button onclick="yes()">Oui 💝</button>
+</div>
+
+<div id="yesSection">
+  <div id="heart">💗 💗 💗 💗</div>
+  <div id="dedication">À ma reine Océane💖 ma valentine !</div>
+  
+  <div id="textBox"></div>
+  
+  <video id="video1"  playsinline webkit-playsinline>
+    <source src="regard_1.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo.
+  </video>
+
+
+
+
+  <video id="video2"  playsinline webkit-playsinline style="flex-shrink: 0; width: 60%; border-radius: 18px;">
+    <source src="bouchou.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo.
+  </video>
+
+
+
+  <video id="video3" playsinline preload="auto" style="display:none">
+    <source src="defilement1/moka_1.mp4" type="video/mp4">
+  </video>
+
+  <video id="video4" playsinline preload="auto" style="display:none">
+    <source src="myname.mp4" type="video/mp4">
+  </video>
+
+  <video id="video5" playsinline preload="auto" style="display:none">
+    <source src="defilement1/centresmile.mp4" type="video/mp4">
+  </video>
+
+  <video id="video6" playsinline preload="auto" style="display:none">
+    <source src="videmake.mp4" type="video/mp4">
+  </video>
+
+  <video id="video7" playsinline preload="auto" style="display:none">
+    <source src="centre.mp4" type="video/mp4">
+  </video>
+
+  <video id="video8" playsinline preload="auto" style="display:none">
+    <source src="defilement1/check3.mp4" type="video/mp4">
+  </video>
+
+  <video id="video9" playsinline preload="auto" style="display:none">
+    <source src="defilement1/centre2.mp4" type="video/mp4">
+  </video>
+
+  <video id="video10" playsinline preload="auto" style="display:none">
+    <source src="defilement1/check2.mp4" type="video/mp4">
+  </video>
+
+  <video id="video11" playsinline preload="auto" style="display:none">
+    <source src="defilement1/check3.mp4" type="video/mp4">
+  </video>
+
+  <video id="video12" playsinline preload="auto" style="display:none">
+    <source src="defilement1/mokesmile.mp4" type="video/mp4">
+  </video>
+
+  <div id="photoSlideshow">
+  <img src="otterspic/lovecall.jpg" class="slide active">
+  <img src="mokii.jpg" class="slide">
+  <img src="otterspic/callbefKing.jpg" class="slide">
+  <img src="mall.jpg" class="slide">
+  <img src="otterspic/callsm.jpg" class="slide">
+  <img src="otterspic/grimo.jpg" class="slide">
+  <img src="bye_pic.jpg" class="slide">
+  </div>
+
+  <div id="loveQuestion" style="display:none; text-align:center; margin-top:20px;">
+    <h2>Est-ce que tu m'aimes ?🤭</h2>
+    <button onclick="answerYes()">Oui🥰</button>
+    <button onclick="answerNo()">Non💔</button>
+  </div>
+
+  <div id="forceYes" style="display:none; text-align:center; margin-top:20px;">
+      <h3>Eeeeh yo ozo sakana hein ! Fina Oui!</h3>
+      <button onclick="answerYes()">Oui 😭❤️</button>
+  </div>
+
+  
+
+  
+  <div id="finalLove" style="display:none;">
+    <p>
+      Je t'aime enormément ❤️
+    </p>
+    <!-- IMAGE AJOUTÉE ICI -->
+    <img src="bisou.jpg" 
+      alt="Souvenir spécial"
+      class="final-image">
+    <p>
+      Mère ya palais❤️
+    </p>
+  </div>
+
+  <div id="signature">Celui qui t'est reconnaissant pour ton amour !
+    <div>Jude Kasongo</div>
+  </div>
+</div>
+
+<audio id="music" src="rangdereine.mp3" loop></audio>
+
+<script>
+const text = [
+  "Tu sais…"/*,
+  "Il y a des cœurs qu’on croise une fois,",
+  "et qu’on n’oublie jamais.",
+
+  "Le tien en fait partie.",
+
+  "Entre nous, ça n’a jamais été facile.",
+  "Il y a la distance,",
+  "les moments où je pense à quand on se reverra,",
+  "à la prochaine fois où je pourrai te serrer dans mes bras.",
+
+  "Oui, c’est dur, mon amour.",
+  "Très dur parfois.",
+
+  "Mais aujourd’hui, je veux que tu saches une chose :",
+  "si je tiens bon,",
+  "si je reste fidèle,",
+  "c’est parce que tu en vaux la peine.",
+
+  "Tu es cette femme incroyable",
+  "que je n’avais encore jamais rencontrée dans ma vie.",
+  "Et aimer quelqu’un comme toi,",
+  "ça donne la force d’attendre,",
+  "de croire,",
+  "et de continuer, peu importe la distance.",
+
+  "Et chaque jour,",
+  "je remercie le Seigneur pour ton existence dans ma vie.",
+
+  "💖💕💕💕💞💞💞❣️❣️❣️💖💖"*/
+];
+
+// Textes de persuasion romantiques
+const persuasionTexts = [
+  "Eeeh ! Appuies sur Oui tout de suite ! Tu crois qu'on est là pour blaguer ? 😤"
+];
+
+let currentPersuasionIndex = 0;
+
+// Emojis d'amour
+const loveEmojis = ['💖', '💓', '💗', '💘', '💝', '💕', '💞', '❤️', '🧡', '❣️', '👩🏻‍❤️‍💋‍👨🏻', '💙', '💜', '🤎', '🫶🏻', '🤍', '💌', '💟', '🌹', '❤️‍🩹', '🌺', '🌸', '🌼', '❤️‍🔥', '💐', '🏵️', '💍', '🕊️', '🍫', '🍬', '🎀', '🎁', '🥰', '😍', '😘', '💋', '💏', '💑', '👩‍❤️‍👨', '👨‍❤️‍👨', '👩‍❤️‍👩', '♾️', '💍', '💍', '💍'];
+
+let index = 0;
+let emojiInterval;
+let textComplete = false;
+let currentTypingInterval = null;
+
+function createFloatingEmoji() {
+  const emoji = document.createElement('div');
+  emoji.className = 'emoji-float';
+  emoji.innerHTML = loveEmojis[Math.floor(Math.random() * loveEmojis.length)];
+  
+  const startX = Math.random() * 100;
+  const endX = startX + (Math.random() * 40 - 20);
+  
+  emoji.style.left = startX + 'vw';
+  emoji.style.top = '100vh';
+  emoji.style.fontSize = (Math.random() * 25 + 18) + 'px'; // Taille réduite pour mobile
+  emoji.style.opacity = '0';
+  
+  document.body.appendChild(emoji);
+
+  const duration = Math.random() * 8 + 6; // Durée réduite pour mobile
+  const delay = Math.random() * 1.5;
+  
+  const animation = emoji.animate([
+    { 
+      transform: 'translateY(0) rotate(0deg)',
+      opacity: 0 
+    },
+    { 
+      opacity: Math.random() * 0.6 + 0.2,
+      offset: 0.15
+    },
+    { 
+      transform: `translateY(-120vh) translateX(${endX - startX}vw) rotate(${Math.random() * 720}deg)`,
+      opacity: 0
+    }
+  ], {
+    duration: duration * 1000,
+    delay: delay * 1000,
+    easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+  });
+
+  animation.onfinish = () => emoji.remove();
+}
+
+function startEmojis() {
+  for(let i = 0; i < 15; i++) { // Nombre réduit pour mobile
+    setTimeout(() => createFloatingEmoji(), i * 200);
+  }
+  
+  emojiInterval = setInterval(createFloatingEmoji, 350); // Intervalle augmenté
+}
+
+function typeWriter(element, text, speed, onComplete) {
+  let i = 0;
+  let currentText = "";
+  
+  // Clear any existing interval first
+  if (currentTypingInterval) {
+    clearInterval(currentTypingInterval);
+  }
+  
+  const typeCharacter = () => {
+    if (i < text.length) {
+      currentText += text.charAt(i);
+      element.innerHTML = currentText;
+      i++;
+
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+      });
+
+
+      // Effet réaliste: pause occasionnelle
+      if (Math.random() < 0.04 && i < text.length - 2) {
+        setTimeout(typeCharacter, Math.random() * 150 + 100);
+      } else {
+        setTimeout(typeCharacter, speed);
+      }
+    } else {
+      element.classList.remove('typing');
+      if (onComplete) onComplete();
+    }
+  };
+  
+  // Start typing
+  typeCharacter();
+}
+
+function typeLine() {
+
+  if (index < text.length) {
+
+    const lineDiv = document.createElement("div");
+    lineDiv.className = "text-line typing";
+    document.getElementById("textBox").appendChild(lineDiv);
+
+    typeWriter(lineDiv, text[index], 110, () => {
+
+      index++;
+
+      lineDiv.style.opacity = "1";
+      lineDiv.style.transform = "translateY(0)";
+
+      const delay = index < text.length ? 1200 : 1500;
+
+      if (window.innerHeight < 700) {
+        setTimeout(() => {
+          lineDiv.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+          });
+        }, 300);
+      }
+
+      setTimeout(typeLine, delay);
+
+    });
+
+  } else {
+
+    // === TEXTE TERMINÉ ===
+    startEmojis();
+
+    setTimeout(() => {
+
+      const textBox = document.getElementById("textBox");
+      textBox.classList.add("morph-fade-out");
+
+      setTimeout(() => {
+
+        textBox.style.display = "none";
+
+        const video1 = document.getElementById("video1");
+
+        // --- VIDÉO 1 ---
+        video1.style.display = "block";
+        video1.classList.add("morph-fade-in");
+
+        video1.play().catch(function(){});
+
+        video1.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        // Quand la vidéo 1 se termine
+        video1.onended = function () {
+
+          video1.classList.add("morph-transform");
+
+          setTimeout(function () {
+
+            video1.style.display = "none";
+
+            // 👇 Affichage de la question
+            const loveQuestion = document.getElementById("loveQuestion");
+            loveQuestion.style.display = "block";
+            loveQuestion.classList.add("morph-fade-in");
+
+            loveQuestion.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+          }, 1200);
+
+        };
+
+      }, 1200);
+
+    }, 3000);
+
+  }
+}
+
+
+function startSlideshow(onComplete) {
+  const slideshow = document.getElementById("photoSlideshow");
+  const slides = slideshow.querySelectorAll(".slide");
+  let current = 0;
+
+  slideshow.style.display = "block";
+  slideshow.classList.add("morph-fade-in");
+
+  slides.forEach((s, i) => {
+    s.classList.toggle("active", i === 0);
+  });
+
+  const interval = setInterval(() => {
+    slides[current].classList.remove("active");
+    current++;
+
+    if (current >= slides.length) {
+      clearInterval(interval);
+
+      setTimeout(() => {
+        slideshow.classList.add("morph-transform");
+
+        setTimeout(() => {
+          slideshow.style.display = "none";
+
+          // --- Ici on ajoute le texte et le bouton pour continuer les souvenirs ---
+          const continueContainer = document.createElement("div");
+          continueContainer.id = "continueMemories";
+          continueContainer.style.margin = "20px auto";
+          continueContainer.style.textAlign = "center";
+
+          // Ajouter le texte au-dessus du bouton
+          continueContainer.innerHTML = `
+            <p style="
+              font-size: clamp(25px, 4vw, 18px);
+              margin-bottom: 60px;
+              color: white;
+              font-weight: bold;
+              text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            ">
+              Vu que tu m'aimes🤭, clique pour voir les souvenirs.🙃
+            </p>
+            <button style="
+              font-size: clamp(16px, 4vw, 18px);
+              padding: 12px 28px;
+              border-radius: 60px;
+              border: none;
+              background: linear-gradient(45deg, #ff5f8a, #ff8fab);
+              color: white;
+              font-weight: 600;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+              cursor: pointer;
+            "> Oui🫣</button>
+          `;
+
+          document.body.appendChild(continueContainer);
+
+          // Clic sur le bouton → jouer video2, 3, 4
+          continueContainer.querySelector("button").onclick = () => {
+            continueContainer.remove(); // retirer le bouton + texte
+            playExtraVideos(() => {
+              // Afficher message final après toutes les vidéos
+              const finalLove = document.getElementById("finalLove");
+              const signature = document.getElementById("signature");
+              finalLove.style.display = "block";
+              signature.style.display = "block";
+              finalLove.classList.add("morph-fade-in");
+              finalLove.scrollIntoView({ behavior: "smooth", block: "center" });
+            });
+          };
+
+        }, 1200);
+      }, 1000);
+
+      return;
+    }
+
+    slides[current].classList.add("active");
+  }, 3000); // durée par photo
+}
+
+
+function playExtraVideos(onComplete) {
+  const video2 = document.getElementById("video2");
+  const video3 = document.getElementById("video3");
+  const video4 = document.getElementById("video4");
+  const video5 = document.getElementById("video5");
+
+  const video6 = document.getElementById("video6");
+  const video7 = document.getElementById("video7");
+  const video8 = document.getElementById("video8");
+  const video9 = document.getElementById("video9");
+  const video10 = document.getElementById("video10");
+  const video11 = document.getElementById("video11");
+  const video12 = document.getElementById("video12");
+
+
+  // --- VIDÉO 2 ---
+  video2.style.display = "block";
+  video2.currentTime = 0;
+  video2.classList.remove("morph-fade-in");
+  void video2.offsetWidth; // force reflow pour l'animation
+  video2.classList.add("morph-fade-in");
+  video2.scrollIntoView({ behavior: "smooth", block: "center" });
+  video2.play().catch(() => {});
+
+  video2.onended = () => {
+    video2.style.display = "none";
+
+    // --- VIDÉO 3 ---
+    video3.style.display = "block";
+    video3.currentTime = 0;
+    video3.classList.remove("morph-fade-in");
+    void video3.offsetWidth;
+    video3.classList.add("morph-fade-in");
+    video3.scrollIntoView({ behavior: "smooth", block: "center" });
+    video3.play().catch(() => {});
+
+    video3.onended = () => {
+      video3.style.display = "none";
+
+      // --- VIDÉO 4 ---
+      video4.style.display = "block";
+      video4.currentTime = 0;
+      video4.classList.remove("morph-fade-in");
+      void video4.offsetWidth;
+      video4.classList.add("morph-fade-in");
+      video4.scrollIntoView({ behavior: "smooth", block: "center" });
+      video4.play().catch(() => {});
+
+      video4.onended = () => {
+        video4.style.display = "none";
+
+        // --- VIDÉO 5---
+        video5.style.display = "block";
+        video5.currentTime = 0;
+        video5.classList.remove("morph-fade-in");
+        void video5.offsetWidth;
+        video5.classList.add("morph-fade-in");
+        video5.scrollIntoView({ behavior: "smooth", block: "center" });
+        video5.play().catch(() => {});
+
+        video5.onended = () => {
+        video5.style.display = "none";
+
+        // --- VIDÉO 6---
+        video6.style.display = "block";
+        video6.currentTime = 0;
+        video6.classList.remove("morph-fade-in");
+        void video6.offsetWidth;
+        video6.classList.add("morph-fade-in");
+        video6.scrollIntoView({ behavior: "smooth", block: "center" });
+        video6.play().catch(() => {});
+
+        video6.onended = () => {
+          video6.style.display = "none";
+
+            // --- VIDÉO 7---
+            video7.style.display = "block";
+            video7.currentTime = 0;
+            video7.classList.remove("morph-fade-in");
+            void video7.offsetWidth;
+            video7.classList.add("morph-fade-in");
+            video7.scrollIntoView({ behavior: "smooth", block: "center" });
+            video7.play().catch(() => {});
+            
+              video7.onended = () => {
+              video7.style.display = "none";
+            // --- VIDÉO 8---
+                  video8.style.display = "block";
+                  video8.currentTime = 0;
+                  video8.classList.remove("morph-fade-in");
+                  void video8.offsetWidth;
+                  video8.classList.add("morph-fade-in");
+                  video8.scrollIntoView({ behavior: "smooth", block: "center" });
+                  video8.play().catch(() => {});
+
+                  video8.onended = () => {
+                    video8.style.display = "none";
+
+                        // --- VIDÉO 9---
+                    video9.style.display = "block";
+                    video9.currentTime = 0;
+                    video9.classList.remove("morph-fade-in");
+                    void video9.offsetWidth;
+                    video9.classList.add("morph-fade-in");
+                    video9.scrollIntoView({ behavior: "smooth", block: "center" });
+                    video9.play().catch(() => {});
+                    
+                      video9.onended = () => {
+                        video9.style.display = "none";
+
+                        // --- VIDÉO 10---
+                        video10.style.display = "block";
+                        video10.currentTime = 0;
+                        video10.classList.remove("morph-fade-in");
+                        void video10.offsetWidth;
+                        video10.classList.add("morph-fade-in");
+                        video10.scrollIntoView({ behavior: "smooth", block: "center" });
+                        video10.play().catch(() => {});
+                        
+                        video10.onended = () => {
+                          video10.style.display = "none";
+
+                    // Callback pour afficher le message final
+                        if (onComplete) onComplete();
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+}
+
+
+
+// Fonction de persuasion romantique - OPTIMISÉ MOBILE
+function persuade() {
+  // Masquer les boutons originaux
+  document.getElementById("choices").style.display = "none";
+  
+  // Afficher le texte de persuasion
+  const persuasionDiv = document.getElementById("persuasionText");
+  const persuasionYesDiv = document.getElementById("persuasionYes");
+  
+  // Choisir un texte de persuasion
+  const text = persuasionTexts[currentPersuasionIndex];
+  currentPersuasionIndex = (currentPersuasionIndex + 1) % persuasionTexts.length;
+  
+  // Afficher le texte avec un effet de frappe
+  persuasionDiv.style.display = "block";
+  persuasionDiv.innerHTML = "";
+  
+  typeWriter(persuasionDiv, text, 70, () => {
+    // Après avoir affiché le texte, montrer le bouton Oui spécial
+    setTimeout(() => {
+      persuasionYesDiv.style.display = "block";
+      
+      // Scroll vers le bouton Oui (adapté mobile)
+      setTimeout(() => {
+        persuasionYesDiv.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center'
+        });
+      }, 300);
+    }, 500);
+  });
+}
+
+function answerYes() {
+  document.getElementById("loveQuestion").style.display = "none";
+  document.getElementById("forceYes").style.display = "none";
+
+  startSlideshow(() => {
+    playExtraVideos(() => {
+      const finalLove = document.getElementById("finalLove");
+      const signature = document.getElementById("signature");
+
+      finalLove.style.display = "block";
+      signature.style.display = "block";
+      finalLove.classList.add("morph-fade-in");
+
+      finalLove.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+  });
+}
+
+function answerNo() {
+  document.getElementById("forceYes").style.display = "block";
+  document.getElementById("forceYes").classList.add("morph-fade-in");
+
+  document.getElementById("forceYes").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+
+function yes() {
+  // Masquer TOUS les éléments de la phase initiale
+  document.getElementById("question").style.display = "none";
+  document.getElementById("choices").style.display = "none";
+  document.getElementById("persuasionText").style.display = "none";
+  document.getElementById("persuasionYes").style.display = "none";
+  
+  // Afficher la section principale
+  document.getElementById("yesSection").style.display = "block";
+  document.getElementById("yesSection").classList.add('smooth-appear');
+  
+  // Scroll vers le haut pour mobile
+  if (window.innerWidth < 768) {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  }
+  
+  const audio = document.getElementById("music");
+  audio.volume = 0.5;
+  audio.loop = true;
+  audio.play().catch(e => {
+    console.log("Audio nécessite interaction utilisateur");
+  });
+  
+  setTimeout(typeLine, 1000);
+}
+</script>
+
+</body>
+</html>
